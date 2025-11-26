@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--foreground);
+}
+
+.text {
+    line-height: 1.6;
+    color: var(--text-secondary);
+}

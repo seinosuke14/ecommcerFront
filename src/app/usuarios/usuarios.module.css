@@ -1,0 +1,59 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--foreground);
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+}
+
+.accordionItem {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.accordionItem:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.accordionSummary {
+    padding: 20px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.accordionSummary::-webkit-details-marker {
+    display: none;
+}
+
+.accordionDetails {
+    padding: 0 20px 20px 20px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--background);
+    margin-top: -10px;
+    padding-top: 20px;
+}
+
+.age {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: bold;
+}
