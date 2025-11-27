@@ -1,0 +1,224 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background shapes */
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    animation: float 20s infinite ease-in-out;
+}
+
+.container::before {
+    background: rgba(249, 115, 22, 0.15);
+    /* Orange tint for variety */
+    top: -100px;
+    right: -100px;
+}
+
+.container::after {
+    background: rgba(0, 112, 243, 0.15);
+    bottom: -100px;
+    left: -100px;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-30px, 30px);
+    }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    /* Slightly wider for registration */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 20px 40px -4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    margin-left: 4px;
+}
+
+.input {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #f97316;
+    /* Orange focus for registration */
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    background: #fff;
+}
+
+.button {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    /* Orange gradient */
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.link {
+    color: #f97316;
+    font-weight: 600;
+    margin-left: 4px;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: #ea580c;
+    text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    .container {
+        background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    }
+
+    .card {
+        background: rgba(30, 30, 30, 0.7);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .title {
+        background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+        color: #a0a0a0;
+    }
+
+    .label {
+        color: #e0e0e0;
+    }
+
+    .input {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .input:focus {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .footer {
+        color: #a0a0a0;
+    }
+}
