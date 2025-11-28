@@ -7,6 +7,7 @@ import { Product } from '@/models/products';
 import styles from './page.module.css';
 import AddToCartBtn from '@/components/AddToCartBtn/AddToCartBtn';
 import HeroCarousel from '@/components/HeroCarousel/HeroCarousel';
+import WelcomePopup from '@/components/WelcomePopup/WelcomePopup';
 
 export default function Home() {
   const [status, setStatus] = useState<'offline' | 'online' | 'checking'>('checking');
@@ -57,6 +58,7 @@ export default function Home() {
 
   return (
     <main>
+      <WelcomePopup />
       <HeroCarousel products={discountedProducts.slice(0, 5)} />
 
       <section>
