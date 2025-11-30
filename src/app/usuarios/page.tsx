@@ -10,6 +10,7 @@ export default function UsersPage() {
     const [users, setUsers] = useState<Users[]>([]);
 
 
+
     useEffect(() => {
         api.json<Users[]>('/users')
             .then(setUsers)
