@@ -23,7 +23,7 @@
 }
 
 .container::before {
-    background: rgba(0, 112, 243, 0.15);
+    background: rgba(255, 69, 0, 0.15);
     top: -100px;
     left: -100px;
 }
@@ -120,20 +120,6 @@
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    outline: none;
-}
-
-.input:focus {
-    border-color: #0070f3;
-    box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.1);
-    background: #fff;
-}
-
-.options {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
 }
@@ -155,18 +141,18 @@
 }
 
 .forgotPassword {
-    color: #0070f3;
+    color: var(--primary);
     font-weight: 500;
     transition: color 0.2s;
 }
 
 .forgotPassword:hover {
-    color: #0051a2;
+    color: #d32f2f;
     text-decoration: underline;
 }
 
 .button {
-    background: linear-gradient(135deg, #0070f3 0%, #0051a2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #d32f2f 100%);
     color: white;
     padding: 14px;
     border-radius: 12px;
@@ -176,12 +162,12 @@
     cursor: pointer;
     transition: all 0.2s ease;
     margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(0, 112, 243, 0.25);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
 }
 
 .button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 112, 243, 0.3);
+    box-shadow: 0 6px 16px rgba(255, 69, 0, 0.3);
 }
 
 .button:active {
@@ -196,14 +182,14 @@
 }
 
 .link {
-    color: #0070f3;
+    color: var(--primary);
     font-weight: 600;
     margin-left: 4px;
     transition: color 0.2s;
 }
 
 .link:hover {
-    color: #0051a2;
+    color: #d32f2f;
     text-decoration: underline;
 }
 

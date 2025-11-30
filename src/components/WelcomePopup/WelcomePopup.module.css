@@ -54,7 +54,7 @@
 }
 
 .buttonPrimary {
-    background: linear-gradient(135deg, #0070f3 0%, #0051a2 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #d32f2f 100%);
     color: white;
     padding: 16px;
     border-radius: 12px;
@@ -63,7 +63,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 112, 243, 0.25);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +72,29 @@
 
 .buttonPrimary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 112, 243, 0.3);
+    box-shadow: 0 6px 16px rgba(255, 69, 0, 0.3);
+}
+
+.ButtonRegister {
+    background: linear-gradient(135deg, #ff7043 0%, #d32f2f 100%);
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ButtonRegister:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 69, 0, 0.3);
 }
 
 .buttonSecondary {

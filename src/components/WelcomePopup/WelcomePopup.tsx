@@ -49,13 +49,21 @@ export default function WelcomePopup() {
         router.push("/login");
     };
 
+    const handleRegister = () => {
+        document.body.style.overflow = 'unset';
+        document.body.style.position = 'unset';
+        document.body.style.width = 'unset';
+        setIsVisible(false);
+        router.push("/registro");
+    }
+
     const handleVisit = () => {
         sessionStorage.setItem("welcome_choice_made", "true");
         document.body.style.overflow = 'unset';
         document.body.style.position = 'unset';
         document.body.style.width = 'unset';
         setIsVisible(false);
-        router.push("/menu-visita");
+        router.push("/menu");
     };
 
     if (!isVisible || !mounted) return null;
@@ -79,6 +87,15 @@ export default function WelcomePopup() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         <span>Soy Cliente</span>
+                    </button>
+                    <button
+                        onClick={handleRegister}
+                        className={styles.ButtonRegister}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span>Me registro</span>
                     </button>
 
                     <button

@@ -16,6 +16,11 @@ interface AuthContextType {
     logout: () => void;
     isAuthenticated: boolean;
     isLoading: boolean;
+    isAdmin: boolean;
+    isClient: boolean;
+    isCajero: boolean;
+    isGarzon: boolean;
+    isVisit: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -59,7 +64,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             login,
             logout,
             isAuthenticated: !!user,
-            isLoading
+            isLoading,
+            isAdmin: user?.rol === 'admin',
+            isClient: user?.rol === 'cliente',
+            isCajero: user?.rol === 'cajero',
+            isGarzon: user?.rol === 'garzon',
+            isVisit: !user
         }}>
             {children}
         </AuthContext.Provider>
