@@ -109,6 +109,7 @@ export default function LoginPage() {
             alert('¡Login exitoso!');
             router.push('/'); // O la ruta que prefieras
 
+
         } catch (error: any) {
             // Manejar errores de la API
             if (error.response?.data?.error) {

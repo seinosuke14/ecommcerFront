@@ -7,7 +7,7 @@
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    background: #fff;
+    background: linear-gradient(90deg, #FF4500 0%, #E60000 100%);
 }
 
 .slide {
@@ -85,12 +85,12 @@
 .price {
     font-size: 2rem;
     font-weight: 700;
-    color: #000;
+    color: var(--primary);
 }
 
 .discount {
     display: inline-block;
-    background: #ff4444;
+    background: var(--primary);
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -134,13 +134,13 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .dot.active {
-    background: #000;
+    background: #fff;
     transform: scale(1.2);
 }
 

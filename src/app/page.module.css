@@ -26,9 +26,10 @@
 .sectionTitle {
   font-size: 2rem;
   margin-bottom: 20px;
-  border-bottom: 2px solid var(--primary);
-  padding-bottom: 10px;
-  display: inline-block;
+  background: linear-gradient(90deg, #FF4500 0%, #E60000 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 0;
   text-align: center;
   display: block;
 }
@@ -39,7 +40,6 @@
   max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
-  /* Background and shadow moved to .card */
 }
 
 .carouselSlide {
@@ -51,7 +51,6 @@
 .carouselItem {
   min-width: 25%;
   padding: 15px;
-  /* Gap between cards */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +99,6 @@
   display: inline-block;
   width: 100%;
   background: #fff;
-  /* Ensure image background is white if needed */
   padding: 10px;
 }
 
@@ -115,7 +113,7 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #ff4444;
+  background-color: var(--primary);
   color: white;
   border-radius: 50%;
   width: 40px;
@@ -130,7 +128,7 @@
 
 .price {
   font-size: 1.2rem;
-  color: var(--foreground);
+  color: var(--primary);
   font-weight: bold;
   margin-bottom: 15px;
 }

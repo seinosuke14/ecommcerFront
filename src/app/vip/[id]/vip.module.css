@@ -75,9 +75,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 400px;
+    /* Ensure height */
+    background: #fff;
 }
 
-
+.mainImage {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
 
 .title {
     font-size: 1.8rem;
