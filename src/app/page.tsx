@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../lib/api';
 import Link from 'next/link';
 import { Product } from '@/models/products';
+import { useAuth } from '@/context/AuthContext';
 
 import styles from './page.module.css';
 import AddToCartBtn from '@/components/AddToCartBtn/AddToCartBtn';
