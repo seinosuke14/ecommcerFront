@@ -11,12 +11,17 @@ export default function Navbar() {
     const { toggleCart, isCartOpen, cartItems } = useCart();
     const { user, logout, isAuthenticated } = useAuth();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isMenuDropdownOpen, setIsMenuDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const menuDropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsDropdownOpen(false);
+            }
+            if (menuDropdownRef.current && !menuDropdownRef.current.contains(event.target as Node)) {
+                setIsMenuDropdownOpen(false);
             }
         }
 
@@ -32,7 +37,7 @@ export default function Navbar() {
                 <div className="logo-container">
                     <Link href="/">
                         <span className="logo-icon">🦊</span>
-                        <span className="logo-text">SOLO<span className="logo-highlight">TODO</span></span>
+                        <span className="logo-text">SABOR<span className="logo-highlight">FUEGO</span></span>
                     </Link>
                 </div>
 
@@ -41,14 +46,49 @@ export default function Navbar() {
                     <button className="search-button">🔍</button>
                 </div>
 
-                <nav className="main-nav">
-                    <Link href="/products?category=Tecnología">Tecnología</Link>
-                    <Link href="/products?category=Hardware">Hardware</Link>
-                    <Link href="/products?category=Periféricos">Periféricos</Link>
-                    <Link href="/products?category=Electro">Electro</Link>
-                </nav>
-
                 <div className="user-actions">
+                    <div className={styles.profileContainer} ref={menuDropdownRef}>
+                        <button
+                            className={`${styles.hamburgerBtn} ${isMenuDropdownOpen ? styles.hamburgerOpen : ''}`}
+                            onClick={() => setIsMenuDropdownOpen(!isMenuDropdownOpen)}
+                            aria-label="Menú de opciones"
+                        >
+                            <span className={styles.hamburgerLine}></span>
+                            <span className={styles.hamburgerLine}></span>
+                            <span className={styles.hamburgerLine}></span>
+                        </button>
+
+                        {isMenuDropdownOpen && (
+                            <div className={styles.dropdown}>
+                                <Link href="/menu" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Menu
+                                </Link>
+                                <div className={styles.dropdownDivider}></div>
+                                <Link href="/products?category=Carnes" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Carnes
+                                </Link>
+                                <Link href="/products?category=Acompañamiento" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Acompañamiento
+                                </Link>
+                                <Link href="/products?category=Chorrillanas" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Chorrillanas
+                                </Link>
+                                <Link href="/products?category=Hamburguesas" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Hamburguesas
+                                </Link>
+                                <Link href="/products?category=Licores" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Licores
+                                </Link>
+                                <Link href="/products?category=Especialidad" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Especialidad
+                                </Link>
+                                <Link href="/products?category=Bebidas-y-Jugos" className={styles.dropdownItem} onClick={() => setIsMenuDropdownOpen(false)}>
+                                    Bebidas y Jugos
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+
                     <button
                         className="profile-btn"
                         onClick={toggleCart}
@@ -97,8 +137,6 @@ export default function Navbar() {
                             </div>
                         )}
                     </div>
-
-                    <button className="settings-btn">⚙️</button>
                 </div>
             </header>
 

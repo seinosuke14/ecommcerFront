@@ -40,7 +40,7 @@
 
 .dropdownItem:hover {
     background: #f0f2f5;
-    color: #0070f3;
+    color: var(--primary);
 }
 
 .dropdownDivider {
@@ -51,4 +51,57 @@
 
 .profileContainer {
     position: relative;
+}
+
+/* Hamburger Menu Icon */
+.hamburgerBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.hamburgerLine {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--header-text);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+}
+
+.hamburgerLine:nth-child(1) {
+    top: 10px;
+}
+
+.hamburgerLine:nth-child(2) {
+    top: 18px;
+}
+
+.hamburgerLine:nth-child(3) {
+    top: 26px;
+}
+
+/* Animated X when open */
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+    top: 18px;
+    transform: rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+    top: 18px;
+    transform: rotate(-45deg);
 }

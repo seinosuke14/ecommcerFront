@@ -68,7 +68,11 @@ export default function VipProductPage() {
                     </div>
                     {/* Main Image */}
                     <div className={styles.mainImageContainer}>
-                        <img src={selectedImage || product.imagenes?.[0]?.url_image} alt={product.nombre} className={styles.mainImage} />
+                        <img
+                            src={selectedImage || product.imagenes?.[0]?.url_image || 'https://p4-ofp.static.pub//fes/cms/2024/07/17/nlp7hjbit9r7qbqb941hykxjino4f3761364.png'}
+                            alt={product.nombre}
+                            className={styles.mainImage}
+                        />
                     </div>
                 </div>
 

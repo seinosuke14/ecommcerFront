@@ -1,5 +1,5 @@
 .btn {
-    background-color: #000;
+    background-color: var(--primary);
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
@@ -14,5 +14,5 @@
 }
 
 .btn:hover {
-    background-color: #333;
+    background-color: #d32f2f;
 }
