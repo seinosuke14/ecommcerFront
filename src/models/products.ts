@@ -6,7 +6,6 @@ export type Product = {
     nombre: string;
     price: number;
     sku: string;
-    // url_image: string;
     descriptions: string;
     discount: number;
     categorias?: Categorias[];
