@@ -5,59 +5,67 @@ import Link from 'next/link';
 import { Product } from '@/models/products';
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
 import styles from './HeroCarousel.module.css';
+import { Menu } from '@/models/menu';
 
 interface HeroCarouselProps {
-    products: Product[];
+    menu: Menu[];
 }
 
-export default function HeroCarousel({ products }: HeroCarouselProps) {
+export default function HeroCarousel({ menu }: HeroCarouselProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    console.log('📊 Menús recibidos:', menu);
+    console.log('📊 Cantidad de menús:', menu.length);
+
 
     // Auto-rotate
     useEffect(() => {
-        if (products.length === 0) return;
+        if (menu.length === 0) return;
         const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % products.length);
+            setCurrentSlide((prev) => (prev + 1) % menu.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, [products.length]);
+    }, [menu.length]);
 
-    if (products.length === 0) return null;
+    if (menu.length === 0) return null;
 
     return (
         <div className={styles.heroContainer}>
-            {products.map((product, index) => (
+            {menu.map((menu, index) => (
                 <div
-                    key={product.id}
+                    key={menu.id}
                     className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
                 >
                     <div className={styles.imageContainer}>
                         <img
-                            src={product.imagenes?.[0]?.url_image || 'https://placehold.co/600x400'}
-                            alt={product.nombre}
+                            src={menu.imagen && menu.imagen !== '' ? menu.imagen : 'https://placehold.co/600x400?text=No+Image'}
+                            alt={menu.nombre}
                             className={styles.image}
+                            onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = 'https://placehold.co/600x400?text=Error+Loading';
+                            }}
                         />
                     </div>
                     <div className={styles.content}>
-                        <h2 className={styles.title}>{product.nombre}</h2>
+                        <h2 className={styles.title}>{menu.nombre}</h2>
                         <p className={styles.description}>
-                            {product.descriptions || 'Sin descripción disponible.'}
+                            {menu.descripcion || 'Disfruta de nuestro delicioso menú del día.'}
                         </p>
 
                         <div className={styles.priceContainer}>
                             <span className={styles.price}>
-                                ${product.price.toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                                ${Number(menu.precio_total).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                             </span>
-                            {product.discount > 0 && (
+                            {menu.descuento_porcentaje > 0 && (
                                 <span className={styles.discount}>
-                                    -{product.discount}% OFF
+                                    -{menu.descuento_porcentaje}% OFF
                                 </span>
                             )}
                         </div>
 
                         <div className={styles.actions}>
-                            <AddToCartBtn product={product} />
-                            <Link href={`/vip/${product.id}`} className={styles.viewBtn}>
+                            <AddToCartBtn product={menu} />
+                            <Link href={`/vip/${menu.id}`} className={styles.viewBtn}>
                                 Ver Detalles
                             </Link>
                         </div>
@@ -66,7 +74,7 @@ export default function HeroCarousel({ products }: HeroCarouselProps) {
             ))}
 
             <div className={styles.controls}>
-                {products.map((_, index) => (
+                {menu.map((_, index) => (
                     <button
                         key={index}
                         className={`${styles.dot} ${index === currentSlide ? styles.active : ''}`}
