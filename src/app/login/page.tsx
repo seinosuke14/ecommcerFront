@@ -103,13 +103,32 @@ export default function LoginPage() {
             });
 
             // Guardar datos del usuario usando el contexto
-            login(response.user, rememberMe);
+            const user = response.user;
+            login(user, rememberMe);
 
-            // Login exitoso, redirigir al home o dashboard
+
             alert('¡Login exitoso!');
-            router.push('/'); // O la ruta que prefieras
 
 
+            let redirectPath = '/'; // Ruta por defecto
+
+            switch (user.rol) {
+                case 'admin':
+                    redirectPath = '/'; // Módulo de configuración principal
+                    break;
+                case 'cajero':
+                    redirectPath = '/cashierPage'; // Módulo de TPV que acabamos de terminar
+                    break;
+                case 'cocina':
+                    redirectPath = '/kitchen'; // Página del KDS (el siguiente paso)
+                    break;
+                case 'mesero':
+                    redirectPath = '/tables'; // Módulo de gestión de mesas/pedidos
+                    break;
+                default:
+                    redirectPath = '/'; // Ruta por defecto para roles desconocidos/clientes
+            }
+            router.push(redirectPath);
         } catch (error: any) {
             // Manejar errores de la API
             if (error.response?.data?.error) {
