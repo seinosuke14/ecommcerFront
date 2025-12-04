@@ -103,13 +103,32 @@ export default function LoginPage() {
             });
 
             // Guardar datos del usuario usando el contexto
-            login(response.user, rememberMe);
+            const user = response.user;
+            login(user, rememberMe);
 
-            // Login exitoso, redirigir al home o dashboard
+
             alert('¡Login exitoso!');
-            router.push('/'); // O la ruta que prefieras
 
 
+            let redirectPath = '/'; // Ruta por defecto
+
+            switch (user.rol) {
+                case 'admin':
+                    redirectPath = '/roles';
+                    break;
+                case 'cajero':
+                    redirectPath = '/roles';
+                    break;
+                case 'cocinero':
+                    redirectPath = '/roles';
+                    break;
+                case 'garzón':
+                    redirectPath = '/roles';
+                    break;
+                default:
+                    redirectPath = '/'; // rol por defecto para usuarios no registrados
+            }
+            router.push(redirectPath);
         } catch (error: any) {
             // Manejar errores de la API
             if (error.response?.data?.error) {

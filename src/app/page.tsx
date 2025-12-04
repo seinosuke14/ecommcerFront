@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../lib/api';
 import Link from 'next/link';
 import { Product } from '@/models/products';
+import { Menu } from '@/models/menu';
 import { useAuth } from '@/context/AuthContext';
 
 import styles from './page.module.css';
@@ -14,11 +15,22 @@ export default function Home() {
   const [status, setStatus] = useState<'offline' | 'online' | 'checking'>('checking');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [products, setProducts] = useState<Product[]>([]);
+  const [menus, setMenus] = useState<Menu[]>([]);
 
   useEffect(() => {
     api.json<Product[]>('/products')
       .then(setProducts)
       .catch(() => setProducts([]));
+
+    api.json<{ total: number; data: Menu[] }>('/menus/disponibles')  // ← Cambio 1: ruta completa
+      .then(response => {
+        console.log('✅ Respuesta completa:', response);
+        setMenus(response.data || []);  // ← Cambio 2: extraer .data
+      })
+      .catch((error) => {
+        console.error('❌ Error:', error);
+        setMenus([]);
+      });
   }, []);
 
   const discountedProducts = products
@@ -60,7 +72,8 @@ export default function Home() {
   return (
     <main>
       <WelcomePopup />
-      <HeroCarousel products={discountedProducts.slice(0, 5)} />
+      <WelcomePopup />
+      <HeroCarousel menu={menus} />
 
       <section>
         <h2 className={styles.sectionTitle}>Ofertas Destacadas</h2>
