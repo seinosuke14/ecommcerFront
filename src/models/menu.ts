@@ -1,10 +1,7 @@
 export type Menu = {
     id: number;
     nombre: string;
-    descriptions: string;
-    price: number;
-    sku: string;
-    discount: number;
+    descripcion: string;
     precio_total: number;
     precio_con_descuento: number;
     descuento_porcentaje: number;
@@ -12,4 +9,5 @@ export type Menu = {
     fecha_inicio: string;
     fecha_fin: string;
     imagen: string;
+    sku: string;
 };
