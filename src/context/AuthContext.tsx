@@ -21,6 +21,7 @@ interface AuthContextType {
     isCajero: boolean;
     isGarzon: boolean;
     isVisit: boolean;
+    isCocinero: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -69,6 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             isClient: user?.rol === 'cliente',
             isCajero: user?.rol === 'cajero',
             isGarzon: user?.rol === 'garzon',
+            isCocinero: user?.rol === 'cocinero',
             isVisit: !user
         }}>
             {children}

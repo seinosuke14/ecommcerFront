@@ -114,19 +114,19 @@ export default function LoginPage() {
 
             switch (user.rol) {
                 case 'admin':
-                    redirectPath = '/'; // Módulo de configuración principal
+                    redirectPath = '/roles';
                     break;
                 case 'cajero':
-                    redirectPath = '/cashierPage'; // Módulo de TPV que acabamos de terminar
+                    redirectPath = '/roles';
                     break;
-                case 'cocina':
-                    redirectPath = '/kitchen'; // Página del KDS (el siguiente paso)
+                case 'cocinero':
+                    redirectPath = '/roles';
                     break;
-                case 'mesero':
-                    redirectPath = '/tables'; // Módulo de gestión de mesas/pedidos
+                case 'garzón':
+                    redirectPath = '/roles';
                     break;
                 default:
-                    redirectPath = '/'; // Ruta por defecto para roles desconocidos/clientes
+                    redirectPath = '/'; // rol por defecto para usuarios no registrados
             }
             router.push(redirectPath);
         } catch (error: any) {
