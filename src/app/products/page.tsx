@@ -4,11 +4,13 @@ import { api } from '../../../lib/api';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Product } from '@/models/products';
-
 import styles from './products.module.css';
 import AddToCartBtn from '@/components/AddToCartBtn/AddToCartBtn';
 
+export const dynamic = 'force-dynamic'
+
 export default function ProductsPage() {
+
 
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
