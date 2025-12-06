@@ -115,10 +115,10 @@ export default function RegistroPage() {
             alert('¡Registro exitoso! Ahora puedes iniciar sesión');
             router.push('/login');
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             // Manejar errores de la API
-            if (error.response?.data?.error) {
-                setErrors({ general: error.response.data.error });
+            if (error instanceof Error) {
+                setErrors({ general: error.message });
             } else {
                 setErrors({ general: 'Error al registrar usuario. Intenta de nuevo.' });
             }
