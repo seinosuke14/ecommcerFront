@@ -67,8 +67,8 @@ export default function MenuPage() {
 
                 {/* Header */}
                 <div className={styles.menuHeader}>
-                    <h1 className={styles.menuTitle}>SABOR & FUEGOsssss</h1>
-                    <h2 className={styles.menuSubtitle}>Menú Digital</h2>
+                    <h1 className={styles.menuTitle}>SABOR & FUEGO</h1>
+                    <h2 className={styles.menuSubtitle}>Los mejores sabores en un solo lugar</h2>
                 </div>
 
                 {/* Table Selection */}
