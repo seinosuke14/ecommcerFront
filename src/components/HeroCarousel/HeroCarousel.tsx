@@ -13,8 +13,6 @@ interface HeroCarouselProps {
 
 export default function HeroCarousel({ menu }: HeroCarouselProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
-    console.log('📊 Menús recibidos:', menu);
-    console.log('📊 Cantidad de menús:', menu.length);
 
 
     // Auto-rotate

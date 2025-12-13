@@ -18,29 +18,42 @@
 .productGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 15px;
     margin-top: 15px;
 }
 
 .productBtn {
-    padding: 15px;
+    padding: 20px;
     border: none;
     /* Usamos tu variable de fondo de tarjeta */
     background-color: var(--card-bg);
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.2s;
+    transition: all 0.2s ease;
     /* Color de texto oscuro para que resalte sobre el fondo claro */
     color: var(--foreground);
     border: 1px solid var(--search-border, #e0e0e0);
-    /* Usando una variable disponible */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 100px;
 }
 
 .productBtn:hover {
     /* Usamos tu color primario para el hover */
     background-color: var(--primary);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary);
+}
+
+.productPrice {
+    font-size: 1.1em;
+    margin-top: 10px;
 }
 
 /* Columna de Pedido (Derecha) */
@@ -51,77 +64,154 @@
     background-color: var(--card-bg);
     display: flex;
     flex-direction: column;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    z-index: 10;
+}
+
+.posOrder header h2 {
+    font-size: 1.5rem;
+    color: var(--foreground);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .orderDetails {
     flex-grow: 1;
     overflow-y: auto;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .orderItemsTable {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 8px;
 }
 
-.orderItemsTable th,
-.orderItemsTable td {
-    padding: 8px 5px;
-    text-align: left;
+.orderItemsTable th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--search-border, #eee);
-    font-size: 0.9em;
 }
+
+.orderItemsTable td {
+    padding: 12px 5px;
+    text-align: left;
+    background-color: var(--background);
+    font-size: 0.95em;
+}
+
+.orderItemsTable tr td:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    padding-left: 10px;
+}
+
+.orderItemsTable tr td:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
 
 .removeBtn {
     /* Color de peligro/secundario no definido en global, usamos un rojo fijo */
-    background-color: #F44336;
-    color: white;
+    background-color: #ffebee;
+    color: #d32f2f;
     border: none;
-    padding: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
+
+.removeBtn:hover {
+    background-color: #ffcdd2;
+}
+
+.orderSummary {
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--search-border);
 }
 
 .orderSummary h3,
 .orderSummary p {
     text-align: right;
-    margin: 5px 0;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .orderSummary h3 {
     font-size: 1.5em;
     /* Usamos tu color primario para el Total */
+    color: var(--foreground);
+    border-top: 1px dashed var(--search-border, #ddd);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.orderSummary h3 span {
     color: var(--primary);
-    border-top: 2px solid var(--search-border, #ddd);
-    padding-top: 10px;
 }
 
 .orderActions {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 25px;
 }
 
 .actionBtn {
     flex: 1;
-    padding: 15px;
+    padding: 16px;
     border: none;
     color: white;
-    font-size: 1.1em;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: filter 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.actionBtn:hover {
+    filter: brightness(1.1);
+}
+
+.actionBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .checkoutBtn {
     /* Usamos tu color primario (Naranja/Rojo) para la acción principal */
     background-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+    /* Aproximación al glow de Sabor y Fuego */
 }
 
 .cancelBtn {
     /* Usamos el color de peligro */
-    background-color: #F44336;
+    background-color: transparent;
+    border: 1px solid #ffcdd2;
+    color: #d32f2f;
+}
+
+.cancelBtn:hover {
+    background-color: #ffebee;
 }
 
 
@@ -131,36 +221,54 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--background);
 }
 
 .tabsContainer {
     display: flex;
     background-color: var(--card-bg);
-    border-bottom: 2px solid var(--search-border, #e0e0e0);
+    border-bottom: 1px solid var(--search-border, #e0e0e0);
+    padding: 0 20px;
 }
 
 .tabButton {
-    padding: 15px 25px;
+    padding: 20px 30px;
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-secondary);
     transition: all 0.2s;
+    position: relative;
+    opacity: 0.7;
 }
 
 .activeTab {
     color: var(--primary);
-    border-bottom: 3px solid var(--primary);
-    background-color: var(--background);
+    background-color: transparent;
+    opacity: 1;
+}
+
+.activeTab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: 3px 3px 0 0;
 }
 
 .tabContent {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 30px;
     background-color: var(--background);
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* El .posContainer original debe ir DENTRO de .tabContent */
@@ -169,102 +277,141 @@
 /* --- Estilos para la Bandeja de Aprobación (ApprovalModule) --- */
 
 .approvalContainer {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
 }
 
 .approvalTitle {
     color: var(--foreground);
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--search-border, #ddd);
-    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .ordersGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 25px;
 }
 
 .orderCard {
     background-color: var(--card-bg);
     border: 1px solid var(--search-border, #eee);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    padding: 25px;
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.orderCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
+}
+
+.orderCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary);
 }
 
 .cardHeader {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--primary);
-    padding-bottom: 10px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--search-border);
+}
+
+.cardHeader h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--foreground);
 }
 
 .orderSource {
     font-weight: 700;
     color: var(--primary);
-    font-size: 0.9em;
+    font-size: 0.85em;
+    background-color: rgba(255, 87, 34, 0.1);
+    /* Tinte primario */
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
 }
 
 .orderList {
     list-style: none;
     padding: 0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    flex-grow: 1;
 }
 
 .orderListItem {
     display: flex;
     justify-content: space-between;
-    padding: 5px 0;
+    padding: 8px 0;
     font-size: 0.95em;
-    border-bottom: 1px dashed var(--search-border, #f0f0f0);
+    color: var(--text-secondary);
 }
 
-.itemPrice {
-    font-weight: 600;
-    color: var(--text-secondary);
+.orderListItem span:first-child {
+    color: var(--foreground);
+    font-weight: 500;
 }
 
 .cardFooter {
     margin-top: auto;
-    padding-top: 15px;
+    padding-top: 20px;
     border-top: 1px solid var(--search-border, #eee);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .totalInfo {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-size: 1.2em;
-    font-weight: 700;
-    margin-bottom: 15px;
+    flex-direction: column;
+}
+
+.totalInfo p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+    text-transform: uppercase;
 }
 
 .orderTotal {
-    color: var(--primary);
+    color: var(--foreground);
+    font-size: 1.3rem;
+    font-weight: 800;
 }
 
-.cardActions {
-    display: flex;
-    gap: 10px;
+.openDetailBtn {
+    background-color: var(--foreground);
+    color: var(--card-bg);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* Botones de acción específicos de Aprobación */
-.approveBtn {
-    flex: 1;
-    background-color: #4CAF50;
-    /* Verde para Aceptar (diferente a --primary) */
-}
-
-.rejectBtn {
-    flex: 1;
-    background-color: #F44336;
-    /* Rojo para Cancelar */
+.openDetailBtn:hover {
+    background-color: var(--primary);
+    transform: scale(1.05);
 }
 
 .noOrdersMessage {
@@ -272,5 +419,202 @@
     text-align: center;
     font-size: 1.2em;
     color: var(--text-secondary);
-    padding: 50px;
+    padding: 80px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    border: 2px dashed var(--search-border);
+    opacity: 0.7;
+}
+
+/* --- ESTILOS DEL MODAL (POPUP) --- */
+/* Estos estilos faltaban anteriormente */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.orderDetailModal {
+    background-color: var(--card-bg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    border: 1px solid var(--search-border);
+}
+
+.closeModalBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.closeModalBtn:hover {
+    color: var(--primary);
+}
+
+.orderDetailModal h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    color: var(--foreground);
+}
+
+.modalSource {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modalItems {
+    background-color: var(--background);
+    border-radius: 12px;
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.modalItems h4 {
+    margin-top: 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--search-border);
+    padding-bottom: 10px;
+}
+
+.detailList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detailListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--search-border);
+}
+
+.detailListItem:last-child {
+    border-bottom: none;
+}
+
+.detailItemQty {
+    font-weight: 800;
+    color: var(--primary);
+    width: 40px;
+    text-align: center;
+    background: rgba(255, 87, 34, 0.1);
+    border-radius: 4px;
+    padding: 2px 0;
+    margin-right: 15px;
+}
+
+.detailItemName {
+    flex-grow: 1;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.detailItemPrice {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.modalSummary {
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.modalSummary h4 {
+    font-size: 1.4rem;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.modalTotal {
+    color: var(--primary);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.modalActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Botones específicos del modal */
+.approveBtn {
+    background-color: #2e7d32;
+    /* Verde más oscuro/profesional */
+    color: white;
+}
+
+.approveBtn:hover {
+    background-color: #1b5e20;
+}
+
+.rejectBtn {
+    background-color: transparent;
+    border: 2px solid #d32f2f;
+    color: #d32f2f;
+}
+
+.rejectBtn:hover {
+    background-color: #ffebee;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

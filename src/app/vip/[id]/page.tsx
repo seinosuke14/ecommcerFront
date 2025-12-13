@@ -44,9 +44,6 @@ export default function VipProductPage() {
 
     if (loading) return <div className={styles.loading}>Cargando...</div>;
     if (!product) return <div className={styles.notFound}>Producto no encontrado</div>;
-
-    console.log(product);
-
     return (
         <div className={styles.container}>
             {/* Main Product Section */}

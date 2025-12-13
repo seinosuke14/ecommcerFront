@@ -24,7 +24,6 @@ export default function Home() {
 
     api.json<{ total: number; data: Menu[] }>('/menus/disponibles')  // ← Cambio 1: ruta completa
       .then(response => {
-        console.log('✅ Respuesta completa:', response);
         setMenus(response.data || []);  // ← Cambio 2: extraer .data
       })
       .catch((error) => {

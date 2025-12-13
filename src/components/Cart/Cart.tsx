@@ -54,7 +54,6 @@ export default function Cart({ isOpen, onClose }: CartProps) {
                 notas: data.notas,
                 carrito
             });
-            console.log('✅ Venta creada:', result);
             clearCart();
             setIsCheckoutOpen(false);
             onClose();

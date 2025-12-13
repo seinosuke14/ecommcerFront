@@ -58,11 +58,12 @@ export default function CashierPage() {
     const fetchPendingOrders = async () => {
         try {
             setIsLoading(true);
-            console.log('🔍 Llamando a:', `${process.env.NEXT_PUBLIC_API_URL}/ventas/`);
             const ventas = await api.json<Venta[]>('/ventas');
             setPendingOrders(ventas);
         } catch (error) {
             console.error('Error al cargar pedidos pendientes:', error);
+            setIsLoading(false);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -175,11 +176,20 @@ export default function CashierPage() {
     // --- 4. Lógica de la Pestaña Aprobación Remota ---
     // ----------------------------------------------------
 
-    const handleAcceptOrder = (orderId: number) => {
+    const handleAcceptOrder = async (orderId: number) => {
         // Enviar a Cocina
-        setPendingOrders(prev => prev.filter(order => order.id !== orderId));
-        setOpenedOrderId(null);
-        alert(`Pedido #${orderId} ACEPTADO y enviado a Cocina.`);
+        try {
+            await api.put(`/ventas/${orderId}`, {
+                estado: 'en espera'
+            });
+            setPendingOrders(prev => prev.filter(order => order.id !== orderId));
+            setOpenedOrderId(null);
+            alert(`Pedido #${orderId} ACEPTADO y enviado a Cocina.`);
+        } catch (error: any) {
+            console.error('Error al aceptar pedido:', error);
+            const errorMessage = error?.response?.data?.error || 'Error al aceptar el pedido';
+            alert(`❌ Error: ${errorMessage}`);
+        }
     };
 
     const handleCancelOrder = (orderId: number) => {
