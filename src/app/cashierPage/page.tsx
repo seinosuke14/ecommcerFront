@@ -193,11 +193,17 @@ export default function CashierPage() {
     };
 
     const handleCancelOrder = (orderId: number) => {
-        const reason = prompt(`Razón para cancelar pedido #${orderId}:`);
-        if (reason) {
+        try {
+            api.put(`/ventas/${orderId}`, {
+                estado: 'cancelada'
+            });
             setPendingOrders(prev => prev.filter(order => order.id !== orderId));
             setOpenedOrderId(null);
-            alert(`Pedido #${orderId} CANCELADO. Razón: ${reason}`);
+            alert(`Pedido #${orderId} CANCELADO.`);
+        } catch (error: any) {
+            console.error('Error al cancelar pedido:', error);
+            const errorMessage = error?.response?.data?.error || 'Error al cancelar el pedido';
+            alert(`❌ Error: ${errorMessage}`);
         }
     };
 
