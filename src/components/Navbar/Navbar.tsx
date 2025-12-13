@@ -37,7 +37,7 @@ export default function Navbar() {
         if (user?.rol === "admin" || user?.rol === "cajero" || user?.rol === "garzon" || user?.rol === 'cocinero') {
             setUrlmenu('/roles')
         } else {
-            setUrlmenu('/sabores')
+            setUrlmenu('/')
         }
     }, [user]);
     return (
