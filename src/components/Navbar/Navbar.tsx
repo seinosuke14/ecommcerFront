@@ -14,6 +14,7 @@ export default function Navbar() {
     const [isMenuDropdownOpen, setIsMenuDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const menuDropdownRef = useRef<HTMLDivElement>(null);
+    const [urlmenu, setUrlmenu] = useState('/');
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -31,11 +32,19 @@ export default function Navbar() {
         };
     }, []);
 
+
+    useEffect(() => {
+        if (user?.rol === "admin" || user?.rol === "cajero" || user?.rol === "garzon" || user?.rol === 'cocinero') {
+            setUrlmenu('/roles')
+        } else {
+            setUrlmenu('/sabores')
+        }
+    }, [user]);
     return (
         <>
             <header className="site-header">
                 <div className="logo-container">
-                    <Link href="/">
+                    <Link href={urlmenu}>
                         <span className="logo-icon">🦊</span>
                         <span className="logo-text">SABOR<span className="logo-highlight">FUEGO</span></span>
                     </Link>
