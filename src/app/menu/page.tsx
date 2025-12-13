@@ -67,21 +67,8 @@ export default function MenuPage() {
 
                 {/* Header */}
                 <div className={styles.menuHeader}>
-                    <h1 className={styles.menuTitle}>SABOR & FUEGO</h1>
+                    <h1 className={styles.menuTitle}>Servento</h1>
                     <h2 className={styles.menuSubtitle}>Los mejores sabores en un solo lugar</h2>
-                </div>
-
-                {/* Table Selection */}
-                <div className={styles.tableSection}>
-                    <label htmlFor="tableNum" className={styles.tableLabel}>Número de Mesa:</label>
-                    <input
-                        id="tableNum"
-                        type="number"
-                        min="1"
-                        value={tableNumber}
-                        onChange={(e) => setTableNumber(parseInt(e.target.value) || 1)}
-                        className={styles.tableInput}
-                    />
                 </div>
 
                 {/* Categories & Products */}

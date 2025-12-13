@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Cart from '../Cart/Cart';
 import { useCart } from '@/context/CartContext';
 import { useState, useRef, useEffect } from 'react';
@@ -33,6 +34,8 @@ export default function Navbar() {
     }, []);
 
 
+    const pathname = usePathname();
+
     useEffect(() => {
         if (user?.rol === "admin" || user?.rol === "cajero" || user?.rol === "garzon" || user?.rol === 'cocinero') {
             setUrlmenu('/roles')
@@ -40,21 +43,17 @@ export default function Navbar() {
             setUrlmenu('/')
         }
     }, [user]);
+
+    if (pathname === '/') return null;
+
     return (
         <>
             <header className="site-header">
                 <div className="logo-container">
                     <Link href={urlmenu}>
-                        <span className="logo-icon">🦊</span>
-                        <span className="logo-text">SABOR<span className="logo-highlight">FUEGO</span></span>
+                        <span>Servento</span>
                     </Link>
                 </div>
-
-                <div className="search-container">
-                    <input type="text" placeholder="Busca un producto" className="search-input" />
-                    <button className="search-button">🔍</button>
-                </div>
-
                 <div className="user-actions">
                     <div className={styles.profileContainer} ref={menuDropdownRef}>
                         <button
@@ -111,7 +110,7 @@ export default function Navbar() {
                             className="profile-btn"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
-                            {isAuthenticated ? `👤 ${user?.name}` : '👤 Perfil ⌄'}
+                            {isAuthenticated ? `👤 ${user?.name}` : '👤 Perfil'}
                         </button>
 
                         {isDropdownOpen && (

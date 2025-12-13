@@ -58,7 +58,7 @@ export default function CashierPage() {
     const fetchPendingOrders = async () => {
         try {
             setIsLoading(true);
-            const ventas = await api.json<Venta[]>('/ventas');
+            const ventas = await api.json<Venta[]>('/ventas?estado=pendiente');
             setPendingOrders(ventas);
         } catch (error) {
             console.error('Error al cargar pedidos pendientes:', error);
@@ -334,7 +334,7 @@ export default function CashierPage() {
                                 <div className={styles.cardFooter}>
                                     <div className={styles.totalInfo}>
                                         <p>Total:</p>
-                                        <span className={styles.orderTotal}>${order.total.toLocaleString('es-CL')}</span>
+                                        <span className={styles.orderTotal}>${Math.round(order.total).toLocaleString('es-CL')}</span>
                                     </div>
                                     <button className={styles.openDetailBtn}>Ver Detalle</button>
                                 </div>
@@ -349,7 +349,7 @@ export default function CashierPage() {
                         <div className={styles.orderDetailModal}>
                             <button className={styles.closeModalBtn} onClick={closeOrderDetails}>&times;</button>
                             <h3>Detalle del Pedido #{openedOrder.id}</h3>
-                            <p className={styles.modalSource}>Fuente: **{openedOrder.nombre_cliente}**</p>
+                            <p className={styles.modalSource}>Fuente:{openedOrder.nombre_cliente}</p>
                             <hr />
 
                             <div className={styles.modalItems}>
@@ -357,16 +357,16 @@ export default function CashierPage() {
                                 <ul className={styles.detailList}>
                                     {openedOrder.detalle_venta?.map((item, index) => (
                                         <li key={index} className={styles.detailListItem}>
-                                            <span className={styles.detailItemQty}>**{item.cantidad}x**</span>
+                                            <span className={styles.detailItemQty}>{item.cantidad}</span>
                                             <span className={styles.detailItemName}>{item.nombre_producto}</span>
-                                            <span className={styles.detailItemPrice}>${item.precio_unitario.toLocaleString('es-CL')} c/u</span>
+                                            <span className={styles.detailItemPrice}>${Math.round(item.precio_unitario).toLocaleString('es-CL')} c/u</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
                             <div className={styles.modalSummary}>
-                                <h4>TOTAL: <span className={styles.modalTotal}>${openedOrder.total.toLocaleString('es-CL')}</span></h4>
+                                <h4>TOTAL: <span className={styles.modalTotal}>${Math.round(openedOrder.total).toLocaleString('es-CL')}</span></h4>
                             </div>
 
                             <div className={styles.modalActions}>

@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   description: "creacion y gestion de ventas",
 };
 
+import MainLayoutClient from "@/components/MainLayout/MainLayoutClient";
+
+// ... imports ...
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,9 +35,9 @@ export default function RootLayout({
         <CartProvider>
           <AuthProvider>
             <Navbar />
-            <main className="main-content">
+            <MainLayoutClient>
               {children}
-            </main>
+            </MainLayoutClient>
           </AuthProvider>
         </CartProvider>
       </body>
