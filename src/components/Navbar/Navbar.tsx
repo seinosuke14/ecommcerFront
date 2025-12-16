@@ -44,7 +44,7 @@ export default function Navbar() {
         }
     }, [user]);
 
-    if (pathname === '/') return null;
+    if (pathname === '/' || pathname?.startsWith('/kitchen')) return null;
 
     return (
         <>
