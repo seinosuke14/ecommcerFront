@@ -42,8 +42,14 @@ export default function CashierPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetchPendingOrders();
+        fetchPendingOrders(); // Initial fetch
         fetchProducts();
+
+        const intervalId = setInterval(() => {
+            fetchPendingOrders(false); // Silent refresh
+        }, 5000);
+
+        return () => clearInterval(intervalId);
     }, [])
 
     const fetchProducts = async () => {
@@ -55,16 +61,16 @@ export default function CashierPage() {
         }
     };
 
-    const fetchPendingOrders = async () => {
+    const fetchPendingOrders = async (showLoading = true) => {
         try {
-            setIsLoading(true);
+            if (showLoading) setIsLoading(true);
             const ventas = await api.json<Venta[]>('/ventas?estado=pendiente');
             setPendingOrders(ventas);
         } catch (error) {
             console.error('Error al cargar pedidos pendientes:', error);
-            setIsLoading(false);
+            if (showLoading) setIsLoading(false);
         } finally {
-            setIsLoading(false);
+            if (showLoading) setIsLoading(false);
         }
     };
 

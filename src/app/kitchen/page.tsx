@@ -11,23 +11,29 @@ export default function KitchenPage() {
     const [ventas, setVentas] = useState<Venta[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchOrders = () => {
-        setLoading(true);
+    const fetchOrders = (showLoading = true) => {
+        if (showLoading) setLoading(true);
         // Fetch ALL orders so we can filter by 'aprobada' AND 'espera'
         api.json<Venta[]>('/ventas')
             .then((data) => {
                 setVentas(data);
-                setLoading(false);
+                if (showLoading) setLoading(false);
             })
             .catch((err) => {
                 console.error("Failed to fetch orders", err);
                 setVentas([]);
-                setLoading(false);
+                if (showLoading) setLoading(false);
             });
     };
 
     useEffect(() => {
-        fetchOrders();
+        fetchOrders(); // Initial fetch
+
+        const intervalId = setInterval(() => {
+            fetchOrders(false); // Silent refresh
+        }, 5000);
+
+        return () => clearInterval(intervalId); // Cleanup
     }, []);
 
     // Filter orders
