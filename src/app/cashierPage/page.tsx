@@ -180,7 +180,7 @@ export default function CashierPage() {
         // Enviar a Cocina
         try {
             await api.put(`/ventas/${orderId}`, {
-                estado: 'en espera'
+                estado: 'aprobada'
             });
             setPendingOrders(prev => prev.filter(order => order.id !== orderId));
             setOpenedOrderId(null);
