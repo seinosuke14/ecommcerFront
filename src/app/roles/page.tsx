@@ -7,9 +7,9 @@ import { roles } from '@/app/config/roles';
 
 
 export default function RoleSelectionPage() {
-    const { isAdmin, isCajero } = useAuth();
+    const { isAdmin, isCajero, isGarzon, isCocinero } = useAuth();
 
-    const useRol = isAdmin ? 'administrador' : isCajero ? 'cajero' : null;
+    const useRol = isAdmin ? 'administrador' : isCajero ? 'cajero' : isGarzon ? 'garzon' : isCocinero ? 'cocinero' : null;
 
     const filteredRoles = isAdmin ? roles :
 
