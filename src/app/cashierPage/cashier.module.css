@@ -618,3 +618,63 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 768px) {
+
+    /* Main Layout */
+    .posContainer {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .posMenu,
+    .posOrder {
+        width: 100%;
+        flex: none;
+    }
+
+    .posOrder {
+        position: relative;
+        bottom: 0;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tabs */
+    .tabsContainer {
+        padding: 0;
+    }
+
+    .tabButton {
+        padding: 15px 10px;
+        font-size: 0.9rem;
+        flex: 1;
+    }
+
+    /* Grids */
+    .productGrid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+
+    .ordersGrid {
+        grid-template-columns: 1fr;
+        /* Stack cards on mobile */
+    }
+
+    /* Order Details Table */
+    .orderItemsTable th,
+    .orderItemsTable td {
+        font-size: 0.85rem;
+        padding: 8px 4px;
+    }
+
+    /* Modal */
+    .orderDetailModal {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .modalActions {
+        grid-template-columns: 1fr;
+    }
+}
